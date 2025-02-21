@@ -1,0 +1,27 @@
+p, a {
+    margin: 4rem;
+    font-size: 1.2rem;
+}
+
+.actions-menu {
+  padding: 0;
+  margin: auto;
+  max-width: 1000px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: flex-start;
+  
+  @media (min-width: 600px) {
+    span {
+      width: 18%;
+    }
+  }
+
+  & span.example-actions {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,38 @@
+p {
+  margin: 2rem 3rem;
+  font-size: 1.1rem;
+}
+
+.heroes {
+  margin: 0 2rem;
+  padding: 1rem;
+  width: 90%;
+  border: 1px solid #3f525c;
+  border-radius: 4px;
+
+  .hero {
+    color: black;
+    text-decoration: ndone;
+    font-size: 1.1rem;
+    background-color: #eee;
+    margin: .5rem .5rem .5rem 0;
+    padding: 0.5rem 0;
+
+    & > td {
+      padding: 0.5rem;
+    }
+    
+  }
+
+}
+
+span.badge {
+  padding: .5em .6em;
+  color: white;
+  background-color: #435b60;
+  min-width: 16px;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
+
+
