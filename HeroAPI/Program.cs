@@ -30,12 +30,6 @@ builder.Services.AddAuthentication(options =>
         OktaDomain = builder.Configuration["Okta:OktaDomain"]
     });
 
-// builder.Services.AddAuthorization(options =>
-// {
-//     options.AddPolicy("AtLeast21", policy =>
-//             policy.Requirements.Add(new MinimumAgeRequirement(21)));
-//     });
-
 builder.Services.AddControllers();
 
 // Add services to the container.

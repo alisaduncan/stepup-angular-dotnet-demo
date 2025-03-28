@@ -19,7 +19,8 @@ namespace HeroAPI.Controllers
             var principal = HttpContext.User.Identity as ClaimsIdentity;
             var acrClaim = principal?.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/claims/authnclassreference");
 
-            if (acrClaim?.Value != requiredAcrValue) {
+            // check if conditions are not met
+            if (false) {
                 HttpContext.Response.Headers.WWWAuthenticate = $"Bearer error=\"insufficient_user_authentication\",error_description=\"A different authentication level is required\",acr_values=\"{requiredAcrValue}\"";
                 return Unauthorized();
             }
@@ -33,7 +34,7 @@ namespace HeroAPI.Controllers
     public class FullHeroesController: ControllerBase
     {
         private HeroData heroData = new HeroData();
-        private readonly int requiredAuthTime = 30; 
+        private readonly int maxAge = 30; 
 
         [Authorize]
         [HttpGet]
@@ -44,10 +45,11 @@ namespace HeroAPI.Controllers
             var now = DateTimeOffset.Now.ToUnixTimeSeconds();
             var iat = 0;
             Int32.TryParse(principal?.Claims.FirstOrDefault(c => c.Type == "auth_time")?.Value, out iat);
-            var maxIatAllowed = iat + requiredAuthTime;
+            var maxIatAllowed = iat + maxAge;
             
-            if (now > maxIatAllowed) {
-                HttpContext.Response.Headers.WWWAuthenticate = $"Bearer error=\"insufficient_user_authentication\",error_description=\"More recent authentication is required\",max_age=\"{requiredAuthTime}\"";
+            // check if conditions are not met
+            if (false) {
+                HttpContext.Response.Headers.WWWAuthenticate = $"Bearer error=\"insufficient_user_authentication\",error_description=\"More recent authentication is required\",max_age=\"{maxAge}\"";
                 return Unauthorized();
             }
 

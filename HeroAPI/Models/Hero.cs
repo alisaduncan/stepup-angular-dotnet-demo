@@ -15,11 +15,6 @@ namespace HeroAPI.Models
         public string? Country { get; set; }
     }
 
-    // public class FeaturedHero
-    // {
-    //     public required string Name { get; set; }
-    // }
-
     public class HeroData 
     {
         private static readonly string[] Countries = new[]
