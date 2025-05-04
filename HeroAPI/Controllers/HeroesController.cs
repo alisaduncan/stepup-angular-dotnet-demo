@@ -20,7 +20,7 @@ namespace HeroAPI.Controllers
             var acrClaim = principal?.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/claims/authnclassreference");
 
             // check if conditions are not met
-            if (false) {
+            if (acrClaim?.Value != requiredAcrValue) {
                 HttpContext.Response.Headers.WWWAuthenticate = $"Bearer error=\"insufficient_user_authentication\",error_description=\"A different authentication level is required\",acr_values=\"{requiredAcrValue}\"";
                 return Unauthorized();
             }
@@ -48,7 +48,7 @@ namespace HeroAPI.Controllers
             var maxIatAllowed = iat + maxAge;
             
             // check if conditions are not met
-            if (false) {
+            if (now > maxIatAllowed) {
                 HttpContext.Response.Headers.WWWAuthenticate = $"Bearer error=\"insufficient_user_authentication\",error_description=\"More recent authentication is required\",max_age=\"{maxAge}\"";
                 return Unauthorized();
             }

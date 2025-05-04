@@ -31,10 +31,10 @@ export class AuthService {
     return decodeToken(this.getIdToken()).payload.acr ?? ''
   }
 
-  public async login(route?: string, acrVals?: string): Promise<void> {
+  public async login(route?: string, acrVals?: string, max_age?: string): Promise<void> {
     const options: TokenParams = {
       acrValues: acrVals ?? undefined,
-      // maxAge: max_age ?? undefined
+      maxAge: max_age ?? undefined
     };
 
     if (route) {

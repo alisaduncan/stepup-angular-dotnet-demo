@@ -29,7 +29,14 @@ export class HeroService {
     const currentUrl = this.router.routerState.snapshot.url;
 
     return this.http.get<Hero[]>(`${API}/heroes`).pipe(
-      map(res => res || [])
+      map(res => res || []),
+      catchError(error => {
+        if (error['name'] === INSUFFICIENT_AUTH) {
+          this.authService.login(currentUrl, error['acr_values']);
+        }
+
+        return throwError(() => error);
+      })
     );
   }
 
@@ -37,7 +44,14 @@ export class HeroService {
     const currentUrl = this.router.routerState.snapshot.url;
 
     return this.http.get<Hero[]>(`${API}/fullheroes`).pipe(
-      map(res => res || [])
+      map(res => res || []),
+      catchError(error => {
+        if (error['name'] === INSUFFICIENT_AUTH) {
+          this.authService.login(currentUrl, undefined, error['max_age']);
+        }
+
+        return throwError(() => error);
+      })
     );
   }
 }
